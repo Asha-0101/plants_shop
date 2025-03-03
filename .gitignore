@@ -1,0 +1,20 @@
+# Ignore Python compiled files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore virtual environments
+venv/
+env/
+
+# Ignore database files
+db.sqlite3
+
+# Ignore IDE/editor files
+.vscode/
+.idea/
+.DS_Store
+
+# Ignore static files
+/static/

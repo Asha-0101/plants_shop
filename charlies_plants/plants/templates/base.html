@@ -1,0 +1,20 @@
+{% extends 'layouts/main.html' %}
+
+{% block title %}Search Results{% endblock %}
+
+{% block content %}
+<h2>Search Results for "{{ query }}"</h2>
+{% if products %}
+    <ul>
+    {% for product in products %}
+        <li>
+            <a href="{% url 'product_details' product.Catagory.name product.name %}">
+                {{ product.name }} - {{ product.description }}
+            </a>
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No products found.</p>
+{% endif %}
+{% endblock %}

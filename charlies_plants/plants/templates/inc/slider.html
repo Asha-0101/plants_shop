@@ -1,0 +1,118 @@
+{% load static %}
+
+<div id="offerCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+
+        <!-- Slide 1: Welcome Slide -->
+        <div class="carousel-item active" style="background-image: url('static/images/pic7.avif');">
+            <div class="carousel-caption slide1">
+                <h1 class="fw-bold font text-danger animate__animated animate__bounce">Welcome to Charlie's Plants ☘</h1>
+                <p class="fs-4 text-success fw-bold animate__animated animate__backInLeft">Bringing nature to your home with fresh, healthy, and vibrant plants.</p>
+                <h3 class="fw-bold text-secondary font-family animate__animated animate__backInRight">Life begins the day you start a gardens. 🌸</h3>
+                <a href="{% url 'blogs' %}">
+                    <button class="btn btn-success px-4 py-2 fs-5 rounded-3 animate__animated animate__backInUp">Expore Now</button>
+                </a>
+                
+            </div>
+        </div>
+
+        <!-- Slide 2: Indoor Plants Offer -->
+        <div class="carousel-item" style="background-image: url('static/images/pic4.jpg');">
+            <div class="carousel-caption slide2">
+                <h2 class="fw-bold font text-info animate__animated animate__flipInX">20% Off on Indoor Plants!</h2>
+                <p class="fs-4 text-primary fw-bold animate__animated animate__zoomIn">Brighten up your home with air-purifying and aesthetic plants at a discounted price.🍀</p>
+                <a href="{% url 'blogs' %}">
+                    <button class="btn btn-success px-4 py-2 fs-5 rounded-3 animate__animated animate__backInUp">Shop Now</button>
+                </a>
+            </div>
+        </div>
+
+        <!-- Slide 3: Garden Sale -->
+        <div class="carousel-item" style="background-image: url('static/images/pic5.jpg');">
+            <div class="carousel-caption slide3">
+                <h2 class="fw-bold font text-success font animate__animated animate__flipInX">Transform Your Garden - Up to 30% Off</h2>
+                <p class="fs-4 text-primary fw-bold animate__animated animate__zoomIn">Exclusive discounts on a wide variety of flowering and outdoor plants.</p>
+                <a href="{% url 'blogs' %}">
+                    <button class="btn btn-success px-4 py-2 fs-5 rounded-3 animate__animated animate__backInUp">Shop Now</button>
+                </a>
+            </div>
+        </div>
+
+        <!-- Slide 4: Buy 1 Get 1 Free -->
+        <div class="carousel-item" style="background-image: url('static/images/pic.jpg');">
+            <div class="carousel-caption slide4">
+                <h2 class="fw-bold font text-warning animate__animated animate__flipInX">🎊 Celebration Sale  Buy 1 Get 1 Free</h2>
+                <p class="fs-4 text-danger fw-bold animate__animated animate__zoomIn">Celebrate nature with this limited-time offer on selected plants. Don't miss out!</p>
+                <a href="{% url 'blogs' %}">
+                    <button class="btn btn-success px-4 py-2 fs-5 rounded-3 animate__animated animate__backInUp">🎉 Special Offer</button>
+                </a>
+            </div>
+        </div>
+
+        <!-- Slide 5: Succulent Special -->
+        <div class="carousel-item" style="background-image: url('static/images/pic3.jpg');">
+            <div class="carousel-caption slide5">
+                <h2 class="fw-bold font text-danger font animate__animated animate__flipInX">Succulent Special  Flat 15% Off</h2>
+                <p class="fs-4 text-white fw-bold animate__animated animate__zoomIn">Low-maintenance, stylish, and perfect for home or office decor.</p>
+                <a href="{% url 'blogs' %}">
+                    <button class="btn btn-success px-4 py-2 fs-5 rounded-3 animate__animated animate__backInUp">Shop Now</button>
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Carousel Controls -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#offerCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#offerCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+    </button>
+
+</div>
+
+<style>
+    .carousel-caption {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 70%;
+        text-align: center;
+    }
+
+    @media (max-width: 991.98px) {
+        .carousel-caption h1,
+        .carousel-caption h2,
+        .carousel-caption h3 {
+            font-size: 1.5rem !important;
+        }
+
+        .carousel-caption p {
+            font-size: 1rem !important;
+        }
+
+        .carousel-caption .btn {
+            font-size: 0.9rem !important;
+            padding: 0.5rem 1rem !important;
+        }
+    }
+
+    @media (max-width: 767.98px) {
+        .carousel-caption h1,
+        .carousel-caption h2,
+        .carousel-caption h3 {
+            font-size: 1.2rem !important;
+        }
+
+        .carousel-caption p {
+            font-size: 0.9rem !important;
+        }
+
+        .carousel-caption .btn {
+            font-size: 0.8rem !important;
+            padding: 0.4rem 0.8rem !important;
+        }
+    }
+</style>

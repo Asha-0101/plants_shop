@@ -1,0 +1,65 @@
+{% extends 'layouts/main.html' %}
+
+{% block title %}
+Search Results for "{{ query }}" | Chatlie's Plants
+{% endblock title %}
+
+{% block content %}
+<section class="bg-light py-4 my-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h4 class="mb-3">Search Results for "{{ query }}"</h4>
+                <hr class="border border-dark">
+                {% include 'inc/message.html' %}
+            </div>
+            {% for product in products %}
+            <div class="col-md-6 col-lg-3 mb-4">
+                <a href="{% url 'product_details' product.Catagory.name product.name %}">
+                    <div class="card shadow-sm border-0 rounded-4 overflow-hidden">
+                        <div class="position-relative">
+                            {% if product.product_image %}
+                                <img src="{{ product.product_image.url }}" class="card-img-top" alt="{{ product.name }}" style="height: 300px; object-fit: cover;">
+                            {% else %}
+                                <div class="d-flex align-items-center justify-content-center" style="height: 300px; background-color: #f0f0f0;">
+                                    <p class="text-muted">No Image Available</p>
+                                </div>
+                            {% endif %}
+                            <!-- Trending Badge -->
+                            {% if product.trending %}
+                                <div class="position-absolute top-0 end-0 p-2 bg-warning text-dark fw-bold rounded-start">
+                                    <i class="fas fa-fire me-1 text-danger"></i>Trending
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="card-body text-center">
+                            <h6 class="fw-bold text-success">{{ product.name }}</h6>
+                            <p class="text-danger fw-bold mb-1">
+                                <del>₹{{ product.original_price }}</del>
+                            </p>
+                            <p class="text-dark fw-bold fs-5">₹{{ product.selling_price }}</p>
+                            <!-- Ratings -->
+                            <div class="d-flex align-items-center justify-content-center mb-2">
+                                <span class="text-warning me-2">
+                                    {% for i in "12345" %}
+                                        {% if forloop.counter <= product.ratings %}
+                                            <i class="fas fa-star"></i>
+                                        {% else %}
+                                            <i class="far fa-star"></i>
+                                        {% endif %}
+                                    {% endfor %}
+                                </span>
+                                <span class="text-muted">({{ product.ratings }}/5)</span>
+                            </div>
+                            <a href="{% url 'product_details' product.Catagory.name product.name %}" class="btn btn-outline-success btn-sm">Explore</a>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {% empty %}
+            <p class="text-center">No products found for "{{ query }}".</p>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock content %}

@@ -1,0 +1,73 @@
+{% extends 'layouts/main.html' %}
+
+{% block title %}
+Blogs | Chatlie's Plants
+{% endblock title %}
+
+{% block content %}
+<section class="py-5 text-center container bg-success text-white rounded-4 shadow-lg">
+    <div class="row py-lg-5">
+        <div class="col-lg-8 col-md-10 mx-auto">
+            <h1 class="fw-bold text-uppercase">Discover Our Top-Selling Plants</h1>
+            <p class="lead">Transform your space with our vibrant collection of plants. From air-purifying indoor plants to stunning outdoor greenery, we have a diverse selection for every plant lover.</p>
+            <p>Every plant in our collection is handpicked for quality and freshness, ensuring you get only the best. Find the perfect addition to your home, office, or garden and bring nature closer to you.</p>
+            <div class="d-flex justify-content-center gap-3 mt-4">
+                <a href="{% url 'login' %}" class="btn btn-outline-light px-4 py-2 shadow-lg">Login</a>
+                <a href="{% url 'register' %}" class="btn btn-light px-4 py-2 shadow-lg">Signin</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="bg-light py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="fw-bold text-dark">Categories</h2>
+                <p class="text-muted">Browse through our wide range of plant categories. From succulents to flowering plants, each category offers a unique selection tailored to different needs and preferences.</p>
+                <hr class="border border-dark w-25 mx-auto">
+                {% include 'inc/message.html' %}
+            </div>
+        </div>
+
+        <div class="row g-4">
+            {% for category in categories %}
+            <div class="col-md-4 col-lg-3">
+                <div class="card shadow border-0 rounded-4 overflow-hidden h-100 d-flex flex-column category-card">
+                    <a href="{% url 'blogsview' category.name %}" class="text-decoration-none">
+                        <div class="category-image-container">
+                            <img src="{{ category.image.url }}" class="card-img-top category-image" alt="{{ category.name }}">
+                            <div class="overlay d-flex align-items-center justify-content-center">
+                                <h5 class="overlay-text text-success fw-bold category-name">{{ category.name }}</h5>
+                            </div>
+                        </div>
+                        <div class="card-body text-center d-flex flex-column bg-white">
+                            <h5 class="fw-bold text-success category-name">{{ category.name }}</h5>
+                            <p class="text-muted flex-grow-1">{{ category.description|truncatewords:15 }}</p>
+                            <button class="btn btn-success btn-sm mt-auto">Explore</button>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            {% empty %}
+            <p class="text-center">No categories found. Stay tuned for upcoming additions to our plant collection.</p>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="py-5 text-center bg-success text-white">
+    <div class="container">
+        <h2 class="fw-bold">Why Choose Charlie's Plants?</h2>
+        <p>At Chatlie's Plants, we believe in bringing nature closer to you. Our plants are sourced from trusted growers, ensuring they are healthy, vibrant, and ready to thrive in your space. With expert advice, fast delivery, and a variety of options, we make plant shopping easy and enjoyable.</p>
+        <p>Join our community of plant lovers today and experience the joy of nurturing greenery in your life!</p>
+    </div>
+</section>
+
+<style>
+.category-card:hover .category-name {
+    color: white !important;
+}
+</style>
+
+{% endblock content %}

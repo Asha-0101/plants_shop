@@ -1,0 +1,163 @@
+{% load static %}
+
+<!-- SECTION - 1  -->
+<section id="section1">
+    <div class="bg-success">
+        <p class="text-white text-center py-2">Free Shipping above ₹399 | All India Delivery</p>
+    </div>
+</section>
+
+<!-- SECTION - 2  -->
+<section id="section2">
+    <div class="d-flex justify-content-between align-items-center px-3">
+        <div class="d-flex align-items-center">
+            <a href="{% url 'home' %}"><img src="{% static 'images/image.png' %}" alt="Logo" style="width: 120px;"></a>
+        </div>
+        <div class="d-flex align-items-center flex-grow-1 d-none d-md-flex">
+            <div class="dropdown ms-3">
+                <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                    All Categories
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <li><a class="dropdown-item" href="{% url 'blogsview' 'Flower Plants' %}">Flower Plants</a></li>
+                    <li><a class="dropdown-item" href="{% url 'blogsview' 'Pot Plants' %}">Pot Plants</a></li>
+                    <li><a class="dropdown-item" href="{% url 'blogsview' 'Fruits Plants' %}">Fruits Plants</a></li>
+                    <li><a class="dropdown-item" href="{% url 'blogsview' 'Hanging Creepers' %}">Hanging Creeper Plants</a></li>
+                    <li><a class="dropdown-item" href="{% url 'blogsview' 'Indoor Plants' %}">Indoor Plants</a></li>
+                    <li><a class="dropdown-item" href="{% url 'blogsview' 'Croton Plants' %}">Croton Plants</a></li>
+                    <li><a class="dropdown-item" href="{% url 'blogsview' 'Herbal Plants' %}">Herbal Plants</a></li>
+                    <li><a class="dropdown-item" href="{% url 'blogsview' 'Seeds' %}">Seeds</a></li>
+                    <li><a class="dropdown-item" href="{% url 'blogsview' 'Aquatic plants' %}">Aquatic Plants</a></li>
+                </ul>
+            </div>
+            <form action="{% url 'search_products' %}" method="get" class="d-flex flex-grow-1 mx-3 ">
+                <input type="text" class="form-control" placeholder="Search Plants..." name="q" id="searchplants">
+                <button class="btn btn-success" type="submit"><i class="fas fa-search"></i></button>
+            </form>
+        </div>
+        <div class="d-flex gap-3 align-items-center">
+            <div class="d-md-none border border-success rounded d-flex align-items-center justify-content-center p-2"  style="width: 40px; height: 40px;" id="searchIcon">
+                <a href="#"><i class="fa-solid fa-search"></i></a>
+            </div>
+            <a href="{% url 'blogs' %}" class="text-dark">
+                <div class="border border-success rounded d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                    <i class="fa-solid fa-blog"></i>
+                </div>
+            </a>
+            <a href="{% url 'cart' %}"  class="text-dark">
+                <div class="border border-success rounded d-flex align-items-center justify-content-center p-2" style="width: 40px; height: 40px;">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                 </div>
+            </a>
+            <div class="dropdown">
+                <a href="#" class="text-dark" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    <div class="border border-success rounded d-flex align-items-center justify-content-center p-2" style="width: 40px; height: 40px;">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end rounded-4 shadow-lg" aria-labelledby="userDropdown">
+                    {% if request.user.is_authenticated %}
+                        <!-- Show when user is logged in -->
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="#">
+                                <i class="fa-solid fa-user me-2"></i>
+                                <span class="fw-bold">{{ request.user }}</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="{% url 'logout' %}">
+                                <i class="fa-solid fa-right-from-bracket me-2"></i>
+                                Logout
+                            </a>
+                        </li>
+                    {% else %}
+                        <!-- Show when user is logged out -->
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="{% url 'login' %}">
+                                <i class="fa-solid fa-right-to-bracket me-2"></i>
+                                Login
+                            </a>
+                        </li>
+                    {% endif %}
+                    <li>
+                        <a class="dropdown-item d-flex align-items-center" href="{% url 'register' %}">
+                            <i class="fa-solid fa-user-plus me-2"></i>
+                            Signin
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div id="mobileSearchBar" class="d-none p-2">
+        <form action="{% url 'search_products' %}" method="get" class="d-flex">
+            <input type="text" class="form-control" placeholder="Search..." name="q" id="searchplants">
+            <button class="btn btn-success" type="submit"><i class="fas fa-search"></i></button>
+        </form>
+    </div>
+</section>
+
+<!-- SECTION - 3   -->
+<section id="section3">
+    <ul class="list-unstyled d-flex justify-content-between flex-wrap mx-4 pt-3">
+        <li class="text-center mb-4">
+            <a class="dropdown-item" href="{% url 'blogsview' 'Flower Plants' %}">
+                <img src="{% static 'images/flower.webp' %}" alt="flower" class="rounded-circle img-fluid" style="width: 100px; height: 100px; object-fit: cover;">
+                <p class="mt-2">Flower Plants</p>
+            </a>
+        </li>
+        <li class="text-center mb-4">
+            <a class="dropdown-item" href="{% url 'blogsview' 'Pot Plants' %}">
+                <img src="{% static 'images/pot.jpg' %}" alt="flower" class="rounded-circle img-fluid" style="width: 100px; height: 100px; object-fit: cover;">
+                <p class="mt-2">Pot Plants</p>
+            </a>
+        </li>
+        <li class="text-center mb-4">
+            <a class="dropdown-item" href="{% url 'blogsview' 'Fruits Plants' %}">
+                <img src="{% static 'images/fruits.webp' %}" alt="flower" class="rounded-circle img-fluid" style="width: 100px; height: 100px; object-fit: cover;">
+                <p class="mt-2">Fruits Plants</p>
+            </a>
+        </li>
+        <li class="text-center mb-4">
+            <a class="dropdown-item" href="{% url 'blogsview' 'Hanging Creepers' %}">
+                <img src="{% static 'images/Betel Leaf Plant.jpg' %}" alt="flower" class="rounded-circle img-fluid" style="width: 100px; height: 100px; object-fit: cover;">
+                <p class="mt-2">Hanging Creeper </p>
+            </a>
+        </li>
+        <li class="text-center mb-4">
+            <a class="dropdown-item" href="{% url 'blogsview' 'Indoor Plants' %}">
+                <img src="{% static 'images/monstera deliciosa.webp' %}" alt="money-plants" class="rounded-circle img-fluid" style="width: 100px; height: 100px; object-fit: cover;">
+                <p class="mt-2">Indoor Plants</p>
+            </a>
+        </li>
+        <li class="text-center mb-4">
+            <a class="dropdown-item" href="{% url 'blogsview' 'Croton Plants' %}">
+                <img src="{% static 'images/Croton.webp' %}" alt="flower" class="rounded-circle img-fluid" style="width: 100px; height: 100px; object-fit: cover;">
+                <p class="mt-2">Croton Plants</p>
+            </a>
+        </li>
+        <li class="text-center mb-4">
+            <a class="dropdown-item" href="{% url 'blogsview' 'Herbal Plants' %}">
+                <img src="{% static 'images/herbs.jpg' %}" alt="flower" class="rounded-circle img-fluid" style="width: 100px; height: 100px; object-fit: cover;">
+                <p class="mt-2">Herbal Plants</p>
+            </a>
+        </li>
+        <li class="text-center mb-4">
+            <a class="dropdown-item" href="{% url 'blogsview' 'Seeds' %}">
+                <img src="{% static 'images/Basil Seeds.webp' %}" alt="flower" class="rounded-circle img-fluid" style="width: 100px; height: 100px; object-fit: cover;">
+                <p class="mt-2">Seeds</p>
+            </a>
+        </li>
+        <li class="text-center mb-4">
+            <a class="dropdown-item" href="{% url 'blogsview' 'Aquatic plants' %}">
+                <img src="{% static 'images/aquatic.webp' %}" alt="flower" class="rounded-circle img-fluid" style="width: 100px; height: 100px; object-fit: cover;">
+                <p class="mt-2">Aquatic Plants</p>
+            </a>
+        </li>
+    </ul>
+</section>
+
+
+
+
+

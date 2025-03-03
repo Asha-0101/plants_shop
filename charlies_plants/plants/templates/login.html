@@ -1,0 +1,43 @@
+{% extends 'layouts/main.html' %}
+
+{% block title %}
+Login | Charlie's Plants
+{% endblock title %}
+
+{% block content %}
+
+
+<div class="login-page">
+    <div class="login-form">
+        <h3>Login to Charlie's Plants</h3>
+        {% include 'inc/message.html' %}
+        <form method="post" class="needs-validation" novalidate>
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="username" class="form-label">UserName</label>
+                <input type="text" class="form-control" placeholder="Enter Your UserName" id="username" name="username" required>
+                {% if form.errors.username %}
+                <div class="text-danger">{{ form.errors.username }}</div>
+                {% endif %}
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control"  placeholder="Enter Your password" id="password" name="password" required>
+                {% if form.errors.password %}
+                <div class="text-danger">{{ form.errors.password }}</div>
+                {% endif %}
+            </div>
+
+            <!-- Submit Button -->
+            <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-success">Login</button>
+            </div>
+
+            <!-- Register Link -->
+            <div class="text-center mt-4">
+                <p>Don't have an account? <a href="{% url 'register' %}" class="text-success">Register here</a></p>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock content %}

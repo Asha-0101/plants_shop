@@ -1,0 +1,115 @@
+{% extends 'layouts/main.html' %}
+
+{% block title %}
+{{ category.name }} | Chatlie's Plants
+{% endblock title %}
+
+{% block content %}
+<section class="bg-light py-5 my-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h4 class="mb-3 text-uppercase font-weight-bold text-success">{{ product.name }} Details</h4>
+                <hr class="border border-dark">
+                {% include 'inc/message.html' %}
+            </div>
+            <div class="col-md-4 my-3">
+                <!-- Image with white background -->
+                <div class="bg-white mt-lg-4 rounded-4 position-relative">
+                    <!-- Trending Badge (Top-Right Corner) -->
+                    {% if product.trending %}
+                        <span class="position-absolute top-0 end-0 translate-middle-y badge bg-warning text-dark p-2 m-2">
+                            <i class="fas fa-fire me-2"></i>Trending
+                        </span>
+                    {% endif %}
+                    <img src="{{ product.product_image.url }}" class="img-fluid rounded-4" alt="{{ product.name }}" style="height: 500px; width: 500px; object-fit: cover;">
+                </div>
+            </div>
+            <div class="col-md-8 my-3">
+                <div class="p-4 bg-white rounded-5 shadow-sm">
+                    <h2 class="text-success font-weight-bold mb-3 text-uppercase">{{ product.name }}</h2>
+                    <p class="text-muted"><i class="fas fa-user-tag me-2"></i>Sold by: <span class="text-dark">Zara's Nursery</span></p>
+                    
+                    <!-- Ratings -->
+                    <div class="d-flex align-items-center mb-3">
+                        <span class="text-warning me-2">
+                            {% for i in "12345" %}
+                                {% if forloop.counter <= product.ratings %}
+                                    <i class="fas fa-star"></i>
+                                {% else %}
+                                    <i class="far fa-star"></i>
+                                {% endif %}
+                            {% endfor %}
+                        </span>
+                        <span class="text-muted">({{ product.ratings }}/5)</span>
+                    </div>
+
+                    <!-- Description -->
+                    <p class="lead">{{ product.description }}</p>
+
+                    <!-- Pricing Section -->
+                    <div class="bg-light p-3 rounded-4 mb-4">
+                        <h6 class="text-danger mb-2"><s>₹. {{ product.original_price }}</s></h6>
+                        <h4 class="text-success font-weight-bold">₹. {{ product.selling_price }} 
+                            {% if product.original_price > product.selling_price %}
+                                <span class="badge bg-danger ms-2">{{ product.get_discount_percentage }}% OFF</span>
+                            {% endif %}
+                        </h4>
+                    </div>
+
+                    <!-- Quantity -->
+                    <div class="mb-4">
+                        <p class="text-muted"><i class="fas fa-box me-2"></i>Quantity Available: <span class="text-dark">{{ product.quantity }}</span></p>
+                    </div>
+
+                    <!-- Trending Badge -->
+                    {% if product.trending %}
+                        <div class="mb-4">
+                            <span class="badge bg-warning text-dark"><i class="fas fa-fire me-2 text-danger"></i>Trending</span>
+                        </div>
+                    {% endif %}
+
+                    <!-- Buttons -->
+                    <div class="mt-4">
+                        {% if product.quantity > 0 %}
+                        <input type="hidden" value="{{ product.id }}" id="pid">
+
+                        {% csrf_token %}
+                        <p>
+                            <div class="input-group d-flex align-items-center" style="width: 180px; gap: 10px;">
+                                <button class="btn shadow-sm" id="btnMinus" 
+                                    style="background: #e0e0e0; border: none; border-radius: 12px; padding: 10px 15px; box-shadow: 5px 5px 10px #b8b8b8, -5px -5px 10px #ffffff;">
+                                    <i class="fa-solid fa-minus text-dark"></i>
+                                </button>
+                                <input type="text" name="qty" id="textQty" value="1" 
+                                    class="form-control text-center"
+                                    style="max-width: 50px; background: #e0e0e0; border: none; text-align: center; font-weight: bold; border-radius: 8px; box-shadow: inset 3px 3px 6px #b8b8b8, inset -3px -3px 6px #ffffff;">
+                                <button class="btn shadow-sm" id="btnPlus" 
+                                    style="background: #e0e0e0; border: none; border-radius: 12px; padding: 10px 15px; box-shadow: 5px 5px 10px #b8b8b8, -5px -5px 10px #ffffff;">
+                                    <i class="fa-solid fa-plus text-dark"></i>
+                                </button>
+                            </div>
+                        </p>
+                        <input type="hidden" value="{{ products.id }}" id="pid">
+                        <div class="d-flex gap-3 flex-md-row flex-column">
+                            <button class="btn btn-success btn-lg" id="btnCart" style="width: 100%;">
+                                <i class="fa-solid fa-cart-shopping me-2"></i>Add to Cart
+                            </button>
+                            <a href="{% url 'checkout' %}" style="width: 100%;">
+                                <button class="btn btn-outline-success btn-lg" style="width: 100%;">
+                                    <i class="fa-solid fa-leaf me-2"></i>Buy Now
+                                </button>
+                            </a>
+                        </div>
+                        {% else %}
+                        <button class="btn btn-danger btn-lg w-100">
+                            Out of Stock
+                        </button>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

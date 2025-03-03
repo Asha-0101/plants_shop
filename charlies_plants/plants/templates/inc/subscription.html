@@ -1,0 +1,49 @@
+{% load static %}
+
+<section class="subscription-box text-center pt-5 my-5">
+    <div class="container">
+        <h2 class="mb-4 fs-1 fw-bold text-uppercase">Choose Your Monthly Plant Subscription</h2>
+        <p class="text-muted">Get a handpicked plant delivered to your doorstep every month! 🌱</p>
+
+        <div class="row mt-4">
+            <!-- Basic Plan -->
+            <div class="col-md-4">
+                <div class="card p-3 shadow-sm">
+                    <img src="{% static 'images/bamboo plant.jpg' %}" class="card-img-top rounded-5" alt="Basic Plan">
+                    <div class="card-body">
+                        <h5 class="card-title">Basic Plan</h5>
+                        <p class="text-muted">A beautiful low-maintenance plant every month.</p>
+                        <p class="price fs-1 fw-bold text-muted">₹199/month</p>
+                        <a href="{% url 'payment1' %}" class="btn btn-success">Subscribe</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Standard Plan -->
+            <div class="col-md-4">
+                <div class="card p-3 shadow-lg">
+                    <img src="{% static 'images/brazilian wood.webp' %}" class="card-img-top" alt="Standard Plan">
+                    <div class="card-body">
+                        <h5 class="card-title">Standard Plan</h5>
+                        <p class="text-muted">Includes premium indoor plants and care tips.</p>
+                        <p class="price fs-1 fw-bold text-muted">₹299/month</p>
+                        <a href="{% url 'payment2' %}" class="btn btn-primary">Subscribe</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Premium Plan -->
+            <div class="col-md-4">
+                <div class="card p-3 shadow-sm">
+                    <img src="{% static 'images/monstera deliciosa.webp' %}" class="card-img-top" alt="Premium Plan">
+                    <div class="card-body">
+                        <h5 class="card-title">Premium Plan</h5>
+                        <p class="text-muted">Exclusive rare plants and personalized guides.</p>
+                        <p class="price fs-1 fw-bold text-muted">₹399/month</p>
+                        <a href="{% url 'payment3' %}" class="btn btn-warning">Subscribe</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
