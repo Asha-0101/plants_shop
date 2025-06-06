@@ -1,1 +1,1 @@
-Procfile
+web: gunicorn charlies_plants.wsgi
